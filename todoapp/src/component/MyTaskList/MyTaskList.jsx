@@ -159,8 +159,25 @@ class MyTaskList extends Component {
         this.getTasks();
 
     };
+     
+
+    // undo the task status from true to false
+    undoTask= index => {
+        //get the task list from the local storage
+
+        let tasklist= JSON.parse(localStorage.getItem('tasklist'));
+        //change status to false
+        tasklist[index].status=false;
+        //save the updates
+        localStorage.setItem('tasklist', JSON.stringify(tasklist));
+        //refresh the task list
+        this.getTasks();
+
+
+    };
 
     
+
 
 
 
