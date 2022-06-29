@@ -49,8 +49,47 @@ class MyTaskList extends Component {
 
              //to add task to list
 
-             tasklist.push(task)
+             tasklist.push(task);
+
+             //to save task in local storage
+             localStorage.setItem("tasklist", JSON.stringify(tasklist));
+
+             //to clear task list
+             this.setState({task: ""});
+
+             //refresh the tasks
+             this,getTasks();
+
+            
         }
 
+    };
+
+    //to get tasklist
+
+    getTasks = () => {
+        //from local
+    let tasklist =JSON.parse(localStorage.getItem("tasklist"));
+
+    //to check if list is empty
+    if (tasklist) {
+        //sort tasks
+        //completed task should move down
+        tasklist=tasklist.sort((a,b) =>{
+            if (a.status){
+                return 1;
+            }
+            elseif (b.status){
+                return -1;
+
+            }
+            return 0;
+            
+        } );
+
+        //this will save the task list in local storage
+        
     }
-}
+    }
+    
+
