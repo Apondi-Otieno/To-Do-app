@@ -176,9 +176,48 @@ class MyTaskList extends Component {
 
     };
 
-    
+    //delete the task list from the list
+    deleteTask= indes => {
+        //get the list
+        let tasklist= JSON.parse(localStorage.getItem("tasklist"));
+        //remove task from list
+        tasklist.splice(index, 1);
+        //save the updated list
+        localStorage.setItem("tasklist", JSON.stringify(tasklist));
+        //refresh
+        this.getTasks();
 
 
+    };
 
+    render(){
+        return(
+            <div>
+                <div>
+                    <Header as= "h1">
+                        <div className="app-header"> ?My Tasks</div>{""}
+                        
+                    </Header>
+                
+                </div>
+                <div className="app-form">
+                    <Form onSubmit={this.onSubmit}>
+                        <input 
+                        type="text"
+                        name="task"
+                        onChange={this.onChange}
+                        value={this.state.task}
+                        fluidplaceholder="add task..."
+                        />
+                    </Form>
+                </div>
+                <div>
+                    <Card.Group>{this.state.task}</Card.Group>
+                </div>
+            </div>
+        );
+    }
 
 }
+
+export default MyTaskList;
