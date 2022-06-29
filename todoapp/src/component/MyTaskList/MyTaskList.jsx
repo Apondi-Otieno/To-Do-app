@@ -1,7 +1,7 @@
 // in this file, i will define the task list component and store the data in my local//
 
 import React, {Component} from "react";
-import {Card, Header, Form, Input, Icon}from "semantic-ui-react";
+import {Card, Header, Form, Input, Icon, CardMeta}from "semantic-ui-react";
 import "./MyTaskList.css";
 
 class MyTaskList extends Component {
@@ -79,7 +79,7 @@ class MyTaskList extends Component {
             if (a.status){
                 return 1;
             }
-            elseif (b.status){
+            elseif (b.status);{
                 return -1;
 
             }
@@ -88,8 +88,80 @@ class MyTaskList extends Component {
         } );
 
         //this will save the task list in local storage
-        
+        localStorage.setItem("tasklist", JSON.stringify(tasklist));
+
+        //this will set tasklist to the state
+
+        this.setState({
+            //default color || incomplete- green || complete- yellow
+            tasklist:tasklist.map((item,index) =>{
+                let color = "green";
+                let cardBackground = { background : "white" };
+                let taskComplete = {textDecoration : "none"};
+
+                if (item.status){
+                    color="yellow";
+                    cardBackground.background="beige";
+                    taskComplete["textDecoration"] = "line-through";
+                }
+
+                return(
+                    < Card key={index} color={color} fluid style= {cardBackground}>
+                    <Card.Content>
+
+                        <Card.Header textAlign="left" style={taskComplete}>
+                            <div style={{ wordWrap:"break-word"}}>{item.task}</div>
+                        </Card.Header>
+
+                        <Card.Meta textAlign="right"> 
+                        <icon
+                        link name = "check circle"
+                        color= "yellow"
+                        onClick={() => this.updateTask(index)}
+                        />
+                        <span style={{ paddingRight :10 }}> Done</span>
+
+                        <icon 
+                        link name = "undo"
+                        color= "green"
+                        onclick={() => this.undoTask(index)}
+                        />
+                        <span style={{ paddingRight :10 }}> Undo</span>
+
+                        <icon 
+                        link name = "delete"
+                        color= "red"
+                        onclick={() => this.deleteTask(index)}
+                        />
+                        <span style={{ paddingRight :10 }}> Delete</span>
+
+
+
+                        </Card.Meta>
+                        </Card.Content>
+                        </Card>
+                );
+
+            })
+        });
     }
-    }
+    };
+
+    //update the task list
+    updateTask= index => {
+        //get list from local storage
+        let tasklist= JSON.parse(localStorage.getItem('tasklist'));
+        //change the status to true
+        tasklist[index].status = true;
+        //save
+        localStorage.setItem("tasklist", JSON.stringify(tasklist));
+        //refresh the list
+        this.getTasks();
+
+    };
+
     
 
+
+
+}
