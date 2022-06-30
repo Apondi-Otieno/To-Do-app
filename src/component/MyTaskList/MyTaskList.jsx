@@ -1,7 +1,7 @@
 // in this file, i will define the task list component and store the data in my local//
 
 import React, {Component} from "react";
-import {Card, Header, Form, Input, Icon, CardMeta}from "semantic-ui-react";
+import {Card, Header, Form, Input, Icon, CardMeta, Button}from "semantic-ui-react";
 import "./MyTaskList.css";
 
 class MyTaskList extends Component {
@@ -195,25 +195,29 @@ class MyTaskList extends Component {
             <div>
                 <div>
                     <Header as= "h1">
-                        <div className="app-header"> ?My Tasks</div>{""}
+                        <div className="app-header"> My Tasks</div>
                         
                     </Header>
                 
                 </div>
                 <div className="app-form">
                     <Form onSubmit={this.onSubmit}>
+                        <label>Task name</label>
                         <input 
                         type="text"
                         name="task"
                         onChange={this.onChange}
                         value={this.state.task}
-                        fluidplaceholder="add task..."
+                        placeholder='add task...'
                         />
+                        <button type='submit'>Submit</button>
                     </Form>
                 </div>
                 <div>
                     <Card.Group>{this.state.task}</Card.Group>
                 </div>
+
+                
             </div>
         );
     }
