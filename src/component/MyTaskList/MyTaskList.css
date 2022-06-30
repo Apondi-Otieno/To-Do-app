@@ -6,5 +6,9 @@
 .app-form{
     margin-bottom: 20px;
     color: black;
-    background-color: blueviolet;
+    background-color: navy;
+}
+
+body{
+    background-image: url(../MyTaskList/image/1.png);
 }
