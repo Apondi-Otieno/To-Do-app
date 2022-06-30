@@ -1,7 +1,7 @@
 // in this file, i will define the task list component and store the data in my local//
 
 import React, {Component} from "react";
-import {Card, Header, Form, Input, Icon, CardMeta, Button}from "semantic-ui-react";
+import { Card, Header, Form, Input, Icon, CardMeta, Button}from "semantic-ui-react";
 import "./MyTaskList.css";
 
 class MyTaskList extends Component {
@@ -106,7 +106,7 @@ class MyTaskList extends Component {
                 }
 
                 return(
-                    < Card key={index} color={color} fluid style= {cardBackground}>
+                    <Card key={index} color={color} fluid style= {cardBackground}>
                     <Card.Content>
 
                         <Card.Header textAlign="left" style={taskComplete}>
@@ -210,10 +210,13 @@ class MyTaskList extends Component {
                         value={this.state.task}
                         placeholder='add task...'
                         />
-                        <button type='submit'>Submit</button>
+                       <Button variant="primary mb-3" type="submit">
+      Submit
+    </Button>
                     </Form>
                 </div>
                 <div>
+                   
                     <Card.Group>{this.state.task}</Card.Group>
                 </div>
 
