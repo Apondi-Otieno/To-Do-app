@@ -43,7 +43,7 @@ class MyTaskList extends Component {
 
             // i'll create task object, default status is false
              let task = {
-                 task: `? ${this.state.task}`,
+                 task: `?${this.state.task}`,
                  status: false
              };
 
